@@ -1,0 +1,73 @@
+spring:
+  application:
+    # 应用名称
+    name: mars
+  datasource:
+    # 数据库连接
+    url: jdbc:mysql://192.168.1.31/yk-mars?characterEncoding=utf-8&useSSL=true&allowMultiQueries=true&zeroDateTimeBehavior=convertToNull&serverTimezone=GMT%2b8
+    # 数据库用户名
+    username: root
+    # 数据库访问密码
+    password: root.123
+    # 连接类型
+    type: com.alibaba.druid.pool.DruidDataSource
+  redis:
+    # Redis服务器地址
+    host: 192.168.1.31
+    # Redis端口
+    port: 6379
+    # 访问密码
+    password: redis123
+    # 数据索引编号
+    database: 0
+    # Redis连接超时时间
+    timeout: 0
+    # 方法缓存过期时间
+    expire: 0
+  mvc:
+    throw-exception-if-no-handler-found: true
+  resources:
+    add-mappings: false
+mybatis:
+  config-location: classpath:mybatis/sqlMapConfig.xml
+  mapper-locations: classpath:mybatis/mapper/**/*.xml
+mapper:
+  mappers: com.jucheng.ruby.mapper.BaseCrudMapper
+  identity: MYSQL
+server:
+  port: 8081
+feign:
+  client:
+    config:
+      default:
+        # Feign连接超时时间
+        connectTimeout: 50000
+        # Feign读取数据超时时间
+        readTimeout: 50000
+        # Feign日志等级
+        loggerLevel: full
+  cloud:
+    loadbalancer:
+      retry:
+        enabled: false
+  hystrix:
+    enabled: true
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 50000
+ribbon:
+  ReadTimeout: 50000
+  MaxAutoRetries: 0
+  MaxAutoRetriesNextServer: 0
+eureka:
+  client:
+    service-url:
+      # 注册中心URL
+      defaultZone: http://192.168.2.226:8080/eureka
+  instance:
+    # 使用IP注册
+    prefer-ip-address: true
