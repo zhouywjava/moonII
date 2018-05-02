@@ -6,7 +6,11 @@
 	<groupId>com.zyw</groupId>
 	<artifactId>moonII</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>jar</packaging>
+	<modules>
+		<module>api</module>
+		<module>provider</module>
+	</modules>
+	<packaging>pom</packaging>
 
 	<name>moonII</name>
 	<description>Demo project for Spring Boot</description>
